@@ -19,7 +19,7 @@ export default function Navbar() {
           <li>
             <NavLink
               to="/"
-              className={({ isActive }) => isActive ? 'text-yellow-400' : 'hover:text-yellow-400 transition-colors'}
+              className={({ isActive }) => isActive ? 'text-[#1A73E8]' : 'hover:text-[#1A73E8] transition-colors'}
             >
               Home
             </NavLink>
@@ -30,7 +30,7 @@ export default function Navbar() {
             <button
               onClick={() => setDropdownOpen(!dropdownOpen)}
               onBlur={() => setTimeout(() => setDropdownOpen(false), 150)}
-              className="flex items-center gap-1 hover:text-yellow-400 transition-colors cursor-pointer"
+              className="flex items-center gap-1 hover:text-[#1A73E8] transition-colors cursor-pointer"
             >
               Collections
               <span className="text-xs">{dropdownOpen ? '▲' : '▼'}</span>
@@ -42,7 +42,7 @@ export default function Navbar() {
                   <li key={cat}>
                     <NavLink
                       to={`/collections/${cat.toLowerCase()}`}
-                      className="block px-4 py-2 hover:bg-white/10 hover:text-yellow-400 transition-colors"
+                      className="block px-4 py-2 hover:bg-white/10 hover:text-[#1A73E8] transition-colors"
                       onClick={() => setDropdownOpen(false)}
                     >
                       {cat}
@@ -56,7 +56,7 @@ export default function Navbar() {
           <li>
             <NavLink
               to="/contact"
-              className={({ isActive }) => isActive ? 'text-yellow-400' : 'hover:text-yellow-400 transition-colors'}
+              className={({ isActive }) => isActive ? 'text-[#1A73E8]' : 'hover:text-[#1A73E8] transition-colors'}
             >
               Contact Us
             </NavLink>

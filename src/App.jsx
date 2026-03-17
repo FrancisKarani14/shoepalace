@@ -7,7 +7,7 @@ import Contact from './pages/Contact'
 function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-neutral-950">
+      <div className="min-h-screen ">
         <Navbar />
         <Routes>
           <Route path="/" element={<LandingPage />} />

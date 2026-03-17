@@ -1,3 +1,9 @@
+import HeroSection from '../components/HeroSection'
+
 export default function LandingPage() {
-  return <div className="text-white p-10">Landing Page</div>
+  return (
+    <div>
+      <HeroSection />
+    </div>
+  )
 }
