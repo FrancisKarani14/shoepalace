@@ -1,5 +1,18 @@
 import { useNavigate } from 'react-router-dom'
 
+const images = ['/Martins.png', '/Milano.png', '/Tommyhilfiger.png']
+
+const latestShoes = [
+  { id: 1, name: 'Dr. Martens Classic', price: 'KES 12,500' },
+  { id: 2, name: 'Milano Leather', price: 'KES 9,800' },
+  { id: 3, name: 'Tommy Hilfiger Sneaker', price: 'KES 11,200' },
+  { id: 4, name: 'Dr. Martens Boot', price: 'KES 13,000' },
+  { id: 5, name: 'Milano Sport', price: 'KES 8,500' },
+  { id: 6, name: 'Tommy Hilfiger Classic', price: 'KES 10,500' },
+  { id: 7, name: 'Dr. Martens Low', price: 'KES 11,800' },
+  { id: 8, name: 'Milano Elite', price: 'KES 9,200' },
+].map((shoe, i) => ({ ...shoe, image: images[i % images.length] }))
+
 const categories = [
   { name: 'Men', image: '/men.png', path: '/collections/men' },
   { name: 'Women', image: '/women.png', path: '/collections/women' },
