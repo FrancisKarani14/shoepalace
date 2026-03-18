@@ -13,13 +13,18 @@ const shoes = [
 
 export default function Latest() {
   return (
-    <section className="bg-neutral-950 py-16 px-6">
-      <div className="text-center mb-10">
+    <section className="relative py-16 px-6">
+      <div className="absolute inset-0 z-0">
+        <img src="/contact.png" alt="" className="w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-black/40" />
+      </div>
+
+      <div className="relative z-10 text-center mb-10">
         <h2 className="text-white text-4xl font-bold tracking-wide">Latest</h2>
         <h5 className="text-white/60 mt-2 text-lg">Fresh drops, just for you</h5>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
+      <div className="relative z-10 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
         {shoes.map(({ id, name, price, image }) => (
           <div key={id} className="bg-neutral-900 rounded-xl overflow-hidden group cursor-pointer hover:scale-105 transition-transform duration-300">
             <img src={image} alt={name} className="w-full h-56 object-cover" />

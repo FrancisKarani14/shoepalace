@@ -28,12 +28,16 @@ const cta = [
 
 export default function Testimonials() {
   return (
-    <section className="bg-white py-16 px-6">
-      <div className="text-center mb-10">
-        <h2 className="text-black text-4xl font-bold tracking-wide">What Our Customers Say</h2>
+    <section className="relative py-16 px-6">
+      <div className="absolute inset-0 z-0">
+        <img src="/contact.png" alt="" className="w-full h-full object-cover" />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+      <div className="relative z-10 text-center mb-10">
+        <h2 className="text-white text-4xl font-bold tracking-wide">What Our Customers Say</h2>
+      </div>
+
+      <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
         {testimonials.map(({ name, message }) => (
           <div key={name} className="bg-gray-50 border border-gray-200 rounded-xl p-6 flex flex-col gap-3">
             <div className="flex gap-1">
@@ -48,7 +52,7 @@ export default function Testimonials() {
       </div>
 
       {/* CTA Strip */}
-      <div className="mt-16 bg-yellow-400 border border-yellow-400 rounded-xl max-w-6xl mx-auto px-8 py-8 flex flex-col items-center gap-8">
+      <div className="relative z-10 mt-16 bg-yellow-400 border border-yellow-400 rounded-xl max-w-6xl mx-auto px-8 py-8 flex flex-col items-center gap-8">
         <div className="flex flex-col md:flex-row items-center justify-center gap-8 w-full">
           {cta.map(({ icon: Icon, title, desc }, i) => (
             <div key={title} className="flex items-center gap-6">
