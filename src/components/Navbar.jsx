@@ -62,12 +62,19 @@ export default function Navbar() {
           </li>
 
           <li>
-            <NavLink
-              to="/contact"
-              className={({ isActive }) => isActive ? 'text-yellow-400' : 'hover:text-yellow-400 transition-colors'}
+            <button
+              onClick={() => {
+                if (window.location.pathname !== '/') {
+                  navigate('/')
+                  setTimeout(() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }), 300)
+                } else {
+                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
+                }
+              }}
+              className="hover:text-yellow-400 transition-colors cursor-pointer"
             >
               Contact Us
-            </NavLink>
+            </button>
           </li>
 
         </ul>

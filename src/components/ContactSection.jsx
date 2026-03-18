@@ -10,7 +10,7 @@ const details = [
 
 export default function ContactSection() {
   return (
-    <section className="bg-neutral-950 py-16 px-6">
+    <section id="contact" className="bg-neutral-950 py-16 px-6">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-10 items-stretch">
 
         {/* Image */}
