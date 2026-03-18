@@ -5,7 +5,6 @@ import Brands from '../components/Brands'
 import Trending from '../components/Trending'
 import Testimonials from '../components/Testimonials'
 import ContactSection from '../components/ContactSection'
-import Footer from '../components/Footer'
 
 export default function LandingPage() {
   return (
@@ -17,7 +16,6 @@ export default function LandingPage() {
       <Trending />
       <Testimonials />
       <ContactSection />
-      <Footer />
     </div>
   )
 }
