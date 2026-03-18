@@ -1,9 +1,12 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { FaWhatsapp } from 'react-icons/fa'
 import Navbar from './components/Navbar'
+import Footer from './components/Footer'
 import LandingPage from './pages/LandingPage'
 import Products from './pages/Products'
-import Contact from './pages/Contact'
+// import Contact from './pages/Contact'
+import Details from './pages/Details'
+import Admin from './pages/Admin'
 
 const WHATSAPP_NUMBER = '254700000000'
 
@@ -16,8 +19,10 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/collections" element={<Products />} />
           <Route path="/collections/:category" element={<Products />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/shoe/:id" element={<Details />} />
+          <Route path="/admin" element={<Admin />} />
         </Routes>
+        <Footer />
 
         {/* Sticky WhatsApp button */}
         <a
