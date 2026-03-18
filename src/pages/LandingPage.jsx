@@ -10,9 +10,9 @@ export default function LandingPage() {
   return (
     <div>
       <HeroSection />
+      <Brands />
       <Categories />
       <Latest />
-      <Brands />
       <Trending />
       <Testimonials />
       <ContactSection />
