@@ -48,13 +48,13 @@ export default function Testimonials() {
       </div>
 
       {/* CTA Strip */}
-      <div className="mt-16 bg-gray-50 border border-gray-200 rounded-xl max-w-6xl mx-auto px-8 py-8 flex flex-col items-center gap-8">
+      <div className="mt-16 bg-yellow-400 border border-yellow-400 rounded-xl max-w-6xl mx-auto px-8 py-8 flex flex-col items-center gap-8">
         <div className="flex flex-col md:flex-row items-center justify-center gap-8 w-full">
           {cta.map(({ icon: Icon, title, desc }, i) => (
-            <div key={title} className="flex items-center gap-3">
-              {i !== 0 && <div className="hidden md:block w-px h-10 bg-gray-300" />}
-              <Icon className="text-2xl text-black flex-shrink-0" />
-              <div>
+            <div key={title} className="flex items-center gap-6">
+              {i !== 0 && <div className="hidden md:block w-px h-16 bg-gray-300" />}
+              <div className="flex flex-col items-center text-center gap-1">
+                <Icon className="text-2xl text-black" />
                 <p className="text-black font-bold text-sm">{title}</p>
                 <p className="text-gray-500 text-xs">{desc}</p>
               </div>
