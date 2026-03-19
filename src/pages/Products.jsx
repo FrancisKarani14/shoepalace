@@ -3,13 +3,13 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { allShoes } from '../data/shoes'
 
 const PER_PAGE = 12
-const brands = ['Dr. Martens', 'Milano', 'Tommy Hilfiger']
+const brands = ['Dr. Martens', 'Santoni Milano', 'Tommy Hilfiger', 'Polo', 'Jordan', 'Timberland', 'Nike', 'Clog', 'New Balance']
 const categories = ['men', 'women', 'unisex']
 const priceRanges = [
   { label: 'All Prices', min: 0, max: Infinity },
-  { label: 'Under KES 8,000', min: 0, max: 8000 },
-  { label: 'KES 8,000 – 12,000', min: 8000, max: 12000 },
-  { label: 'Above KES 12,000', min: 12000, max: Infinity },
+  { label: 'Under KES 2,500', min: 0, max: 2500 },
+  { label: 'KES 2,500 – 3,000', min: 2500, max: 3000 },
+  { label: 'Above KES 3,000', min: 3000, max: Infinity },
 ]
 
 export default function Products() {

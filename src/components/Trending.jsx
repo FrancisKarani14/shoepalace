@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { allShoes } from '../data/shoes'
 
-const shoes = allShoes.slice(8, 16)
+const shoes = allShoes.filter(s => [3, 4, 5, 6, 7, 8, 9, 10].includes(s.id))
 
 export default function Trending() {
   const navigate = useNavigate()
