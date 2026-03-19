@@ -6,21 +6,21 @@ export default function Navbar() {
   const navigate = useNavigate()
 
   return (
-    <nav className="bg-black sticky top-0 z-50 w-full">
+    <nav className="bg-[#F9FAFB] sticky top-0 z-50 w-full shadow-sm">
       <div className="flex flex-col items-center py-3">
 
         {/* Logo */}
         <NavLink to="/">
-          <img src="/LOGO.png" alt="Shoe Palace" className="h-24 object-contain mb-2" />
+          <img src="/LOGO2.png" alt="Shoe Palace" className="h-24 object-contain mb-2" />
         </NavLink>
 
         {/* Nav Links */}
-        <ul className="flex items-center gap-8 text-white text-sm font-medium tracking-wide">
+        <ul className="flex items-center gap-8 text-sm font-medium tracking-wide">
 
           <li>
             <NavLink
               to="/"
-              className={({ isActive }) => isActive ? 'text-yellow-400' : 'hover:text-yellow-400 transition-colors'}
+              className={({ isActive }) => isActive ? 'text-yellow-400' : 'text-black hover:text-yellow-400 transition-colors'}
             >
               Home
             </NavLink>
@@ -31,17 +31,17 @@ export default function Navbar() {
             <button
               onClick={() => setDropdownOpen(!dropdownOpen)}
               onBlur={() => setTimeout(() => setDropdownOpen(false), 150)}
-              className="flex items-center gap-1 hover:text-yellow-400 transition-colors cursor-pointer"
+              className="flex items-center gap-1 text-black hover:text-yellow-400 transition-colors cursor-pointer"
             >
               Collections
               <span className="text-xs">{dropdownOpen ? '▲' : '▼'}</span>
             </button>
 
             {dropdownOpen && (
-              <ul className="absolute top-full left-1/2 -translate-x-1/2 mt-2 bg-black border border-white/10 rounded w-36 text-center shadow-lg">
+              <ul className="absolute top-full left-1/2 -translate-x-1/2 mt-2 bg-[#E3DFDE] border border-black/10 rounded w-36 text-center shadow-lg">
                 <li>
                   <button
-                    className="block w-full px-4 py-2 hover:bg-white/10 hover:text-yellow-400 transition-colors cursor-pointer"
+                    className="block w-full px-4 py-2 text-black hover:bg-black/5 hover:text-yellow-400 transition-colors cursor-pointer"
                     onMouseDown={() => { navigate('/collections'); setDropdownOpen(false) }}
                   >
                     All
@@ -50,7 +50,7 @@ export default function Navbar() {
                 {['Men', 'Women', 'Unisex'].map((cat) => (
                   <li key={cat}>
                     <button
-                      className="block w-full px-4 py-2 hover:bg-white/10 hover:text-yellow-400 transition-colors cursor-pointer"
+                      className="block w-full px-4 py-2 text-black hover:bg-black/5 hover:text-yellow-400 transition-colors cursor-pointer"
                       onMouseDown={() => { navigate(`/collections/${cat.toLowerCase()}`); setDropdownOpen(false) }}
                     >
                       {cat}
@@ -71,7 +71,7 @@ export default function Navbar() {
                   document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
                 }
               }}
-              className="hover:text-yellow-400 transition-colors cursor-pointer"
+              className="text-black hover:text-yellow-400 transition-colors cursor-pointer"
             >
               Contact Us
             </button>
