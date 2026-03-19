@@ -4,7 +4,7 @@ const details = [
   { icon: FaMapMarkerAlt, label: 'Location', value: 'Nairobi, Kenya — Westlands, Sarit Centre' },
   { icon: FaClock, label: 'Opening Hours', value: 'Mon – Sat: 8:00 AM – 8:00 PM' },
   { icon: FaClock, label: 'Closing Hours', value: 'Sunday: 10:00 AM – 6:00 PM' },
-  { icon: FaPhone, label: 'Phone', value: '+254 700 000 000' },
+  { icon: FaPhone, label: 'Phone', value: '+254 707011888' },
   { icon: FaEnvelope, label: 'Email', value: 'info@shoepalace.co.ke' },
 ]
 
