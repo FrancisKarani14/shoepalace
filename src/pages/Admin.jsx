@@ -89,7 +89,7 @@ export default function Admin() {
       {/* Sidebar */}
       <aside className={`fixed inset-y-0 left-0 z-40 w-60 bg-neutral-900 flex flex-col transition-transform duration-300 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 md:static md:flex`}>
         <div className="p-6 border-b border-white/10">
-          <img src="/LOGO2.png" alt="Shoe Palace" className="h-10 object-contain" />
+          <img src="/LOGO.png" alt="Shoe Palace" className="h-10 object-contain" />
           <p className="text-white/40 text-xs mt-1">Admin Dashboard</p>
         </div>
 
