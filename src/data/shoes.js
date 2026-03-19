@@ -39,4 +39,10 @@ export const allShoes = [
   { id: 38, name: 'Santoni Milano Block Heel',  price: 2200, brand: 'Santoni Milano', category: 'women',  image: '/Milano.png',        stock: 7 },
   { id: 39, name: 'Tommy Hilfiger Slip On',     price: 2500, brand: 'Tommy Hilfiger', category: 'unisex', image: '/Tommyhilfiger.png', stock: 8 },
   { id: 40, name: 'Dr. Martens Quad Boot',      price: 3500, brand: 'Dr. Martens',    category: 'men',    image: '/Martins.png',       stock: 2 },
+  { id: 41, name: 'Polo Loafer',                 price: 1800, brand: 'Polo',            category: 'men',    image: '/polo.png',          stock: 10 },
+  { id: 42, name: 'Jordan 9',                    price: 2000, brand: 'Jordan',          category: 'men',    image: '/jordan9kids.png',   stock: 8 },
+  { id: 43, name: 'Timberland Loafer',           price: 2500, brand: 'Timberland',      category: 'men',    image: '/timberland.png',    stock: 6 },
+  { id: 44, name: 'Airforce',                    price: 1800, brand: 'Nike',            category: 'unisex', image: '/Airforce.png',      stock: 9 },
+  { id: 45, name: 'Clog',                        price: 1000, brand: 'Clog',            category: 'unisex', image: '/clog.png',          stock: 15 },
+  { id: 46, name: 'New Balance',                 price: 2200, brand: 'New Balance',     category: 'women',  image: '/newbalance.png',    stock: 7 },
 ]

@@ -8,7 +8,7 @@ import Products from './pages/Products'
 import Details from './pages/Details'
 import Admin from './pages/Admin'
 
-const WHATSAPP_NUMBER = '254700000000'
+const WHATSAPP_NUMBER = '254707011888'
 
 function App() {
   return (

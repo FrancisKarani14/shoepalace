@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { allShoes } from '../data/shoes'
 
-const shoes = allShoes.slice(0, 8)
+const shoes = allShoes.filter(s => [41, 42, 43, 44, 45, 46, 1, 2].includes(s.id))
 
 export default function Latest() {
   const navigate = useNavigate()

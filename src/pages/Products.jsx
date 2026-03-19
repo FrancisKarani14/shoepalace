@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { allShoes } from '../data/shoes'
 
 const PER_PAGE = 12
-const brands = ['Dr. Martens', 'Santoni Milano', 'Tommy Hilfiger']
+const brands = ['Dr. Martens', 'Santoni Milano', 'Tommy Hilfiger', 'Polo', 'Jordan', 'Timberland', 'Nike', 'Clog', 'New Balance']
 const categories = ['men', 'women', 'unisex']
 const priceRanges = [
   { label: 'All Prices', min: 0, max: Infinity },
