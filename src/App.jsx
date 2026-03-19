@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { FaWhatsapp } from 'react-icons/fa'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
@@ -10,21 +10,22 @@ import Admin from './pages/Admin'
 
 const WHATSAPP_NUMBER = '254707011888'
 
-function App() {
-  return (
-    <BrowserRouter>
-      <div className="min-h-screen">
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/collections" element={<Products />} />
-          <Route path="/collections/:category" element={<Products />} />
-          <Route path="/shoe/:id" element={<Details />} />
-          <Route path="/admin" element={<Admin />} />
-        </Routes>
-        <Footer />
+function Layout() {
+  const location = useLocation()
+  const isAdmin = location.pathname.startsWith('/admin')
 
-        {/* Sticky WhatsApp button */}
+  return (
+    <div className="min-h-screen">
+      {!isAdmin && <Navbar />}
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/collections" element={<Products />} />
+        <Route path="/collections/:category" element={<Products />} />
+        <Route path="/shoe/:id" element={<Details />} />
+        <Route path="/admin/*" element={<Admin />} />
+      </Routes>
+      {!isAdmin && <Footer />}
+      {!isAdmin && (
         <a
           href={`https://wa.me/${WHATSAPP_NUMBER}`}
           target="_blank"
@@ -34,7 +35,15 @@ function App() {
         >
           <FaWhatsapp className="text-2xl" />
         </a>
-      </div>
+      )}
+    </div>
+  )
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Layout />
     </BrowserRouter>
   )
 }
