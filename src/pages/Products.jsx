@@ -1,9 +1,8 @@
 import { useState, useMemo, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { allShoes } from '../data/shoes'
+import { supabase } from '../lib/supabase'
 
 const PER_PAGE = 12
-const brands = ['Dr. Martens', 'Santoni Milano', 'Tommy Hilfiger', 'Polo', 'Jordan', 'Timberland', 'Nike', 'Clog', 'New Balance']
 const categories = ['men', 'women', 'unisex']
 const priceRanges = [
   { label: 'All Prices', min: 0, max: Infinity },
@@ -30,12 +29,22 @@ export default function Products() {
   const { category: urlCategory } = useParams()
   const navigate = useNavigate()
 
+  const [allShoes, setAllShoes] = useState([])
+  const [brands, setBrands] = useState([])
   const [selectedCategory, setSelectedCategory] = useState(urlCategory || '')
   const [selectedBrands, setSelectedBrands] = useState([])
   const [selectedPrice, setSelectedPrice] = useState(0)
   const [page, setPage] = useState(1)
   const [filtersOpen, setFiltersOpen] = useState(false)
   const [sections, setSections] = useState({ category: true, brand: true, price: true })
+
+  useEffect(() => {
+    supabase.from('products').select('*').then(({ data }) => {
+      const shoes = data || []
+      setAllShoes(shoes)
+      setBrands([...new Set(shoes.map(s => s.brand).filter(Boolean))])
+    })
+  }, [])
 
   useEffect(() => {
     setSelectedCategory(urlCategory || '')
@@ -50,7 +59,6 @@ export default function Products() {
   }
 
   const toggleSection = (key) => setSections(prev => ({ ...prev, [key]: !prev[key] }))
-
   const resetFilters = () => { setSelectedCategory(''); setSelectedBrands([]); setSelectedPrice(0); setPage(1) }
 
   const filtered = useMemo(() => {
@@ -61,7 +69,7 @@ export default function Products() {
       const matchPrice = shoe.price >= min && shoe.price <= max
       return matchCat && matchBrand && matchPrice
     })
-  }, [selectedCategory, selectedBrands, selectedPrice])
+  }, [allShoes, selectedCategory, selectedBrands, selectedPrice])
 
   const totalPages = Math.ceil(filtered.length / PER_PAGE)
   const paginated = filtered.slice((page - 1) * PER_PAGE, page * PER_PAGE)
@@ -123,7 +131,6 @@ export default function Products() {
 
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-8">
 
-        {/* Mobile filter toggle */}
         <div className="md:hidden flex justify-between items-center mb-2">
           <button
             onClick={() => setFiltersOpen(!filtersOpen)}
@@ -136,12 +143,10 @@ export default function Products() {
           </button>
         </div>
 
-        {/* Sidebar — always visible on md+, toggle on mobile */}
         <div className={`${filtersOpen ? 'block' : 'hidden'} md:block`}>
           {sidebar}
         </div>
 
-        {/* Products Grid */}
         <div className="flex-1">
           {paginated.length === 0 ? (
             <p className="text-white/50 text-center mt-20">No shoes match your filters.</p>
@@ -149,7 +154,7 @@ export default function Products() {
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {paginated.map((shoe) => (
                 <div key={shoe.id} className="bg-neutral-900 rounded-xl overflow-hidden hover:scale-105 transition-transform duration-300">
-                  <img src={shoe.image} alt={shoe.name} className="w-full h-56 md:h-56 aspect-square md:aspect-auto object-cover" />
+                  <img src={shoe.image_url} alt={shoe.name} className="w-full h-56 md:h-56 aspect-square md:aspect-auto object-cover" />
                   <div className="p-4">
                     <p className="text-white/50 text-xs capitalize mb-1">{shoe.category}</p>
                     <p className="text-white font-semibold text-sm">{shoe.name}</p>

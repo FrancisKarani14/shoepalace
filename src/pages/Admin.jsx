@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
 import { FaBox, FaChartBar, FaUsers, FaPlus, FaEdit, FaTrash, FaBars, FaTimes, FaSignOutAlt } from 'react-icons/fa'
 
@@ -7,6 +8,7 @@ const SECTIONS = ['overview', 'products', 'subscribers']
 const emptyForm = { name: '', price: '', brand: '', category: 'men', stock: '', image_url: '' }
 
 export default function Admin() {
+  const navigate = useNavigate()
   const [active, setActive] = useState('overview')
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [products, setProducts] = useState([])
@@ -89,7 +91,7 @@ export default function Admin() {
       {/* Sidebar */}
       <aside className={`fixed inset-y-0 left-0 z-40 w-60 bg-neutral-900 flex flex-col transition-transform duration-300 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 md:static md:flex`}>
         <div className="p-6 border-b border-white/10">
-          <img src="/LOGO.png" alt="Shoe Palace" className="h-10 object-contain" />
+          <img src="/LOGO.png" alt="Shoe Palace" className="h-10 object-contain cursor-pointer" onClick={() => navigate('/')} />
           <p className="text-white/40 text-xs mt-1">Admin Dashboard</p>
         </div>
 

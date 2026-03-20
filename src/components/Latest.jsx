@@ -1,10 +1,15 @@
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { allShoes } from '../data/shoes'
-
-const shoes = allShoes.filter(s => [41, 42, 43, 44, 45, 46, 1, 2].includes(s.id))
+import { supabase } from '../lib/supabase'
 
 export default function Latest() {
   const navigate = useNavigate()
+  const [shoes, setShoes] = useState([])
+
+  useEffect(() => {
+    supabase.from('products').select('*').order('created_at', { ascending: false }).limit(8)
+      .then(({ data }) => setShoes(data || []))
+  }, [])
 
   return (
     <section className="relative py-16 px-6">
@@ -21,7 +26,7 @@ export default function Latest() {
       <div className="relative z-10 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
         {shoes.map((shoe) => (
           <div key={shoe.id} className="bg-neutral-900 rounded-xl overflow-hidden hover:scale-105 transition-transform duration-300">
-            <img src={shoe.image} alt={shoe.name} className="w-full h-56 object-cover" />
+            <img src={shoe.image_url} alt={shoe.name} className="w-full h-56 object-cover" />
             <div className="p-4">
               <p className="text-white font-semibold text-sm">{shoe.name}</p>
               <p className="text-yellow-400 mt-1 text-sm mb-3">KES {shoe.price.toLocaleString()}</p>

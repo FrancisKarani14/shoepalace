@@ -1,11 +1,19 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { FaBars, FaTimes } from 'react-icons/fa'
+import { supabase } from '../lib/supabase'
 
 export default function Navbar() {
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [isAdmin, setIsAdmin] = useState(false)
   const navigate = useNavigate()
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data }) => setIsAdmin(!!data.session))
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_e, s) => setIsAdmin(!!s))
+    return () => subscription.unsubscribe()
+  }, [])
 
   const goTo = (path) => {
     navigate(path)
@@ -81,6 +89,13 @@ export default function Navbar() {
               Contact Us
             </button>
           </li>
+          {isAdmin && (
+            <li>
+              <NavLink to="/admin" className="text-yellow-500 font-semibold hover:text-yellow-400 transition-colors">
+                Dashboard
+              </NavLink>
+            </li>
+          )}
         </ul>
       </div>
 
@@ -117,6 +132,11 @@ export default function Navbar() {
           <button onClick={goToContact} className="text-black text-left">
             Contact Us
           </button>
+          {isAdmin && (
+            <NavLink to="/admin" onClick={() => setMenuOpen(false)} className="text-yellow-500 font-semibold">
+              Dashboard
+            </NavLink>
+          )}
         </div>
       )}
     </nav>
