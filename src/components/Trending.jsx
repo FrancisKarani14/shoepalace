@@ -7,7 +7,7 @@ export default function Trending() {
   const [shoes, setShoes] = useState([])
 
   useEffect(() => {
-    supabase.from('products').select('*').order('created_at', { ascending: true }).limit(8)
+    supabase.from('products').select('*').eq('is_trending', true).order('created_at', { ascending: false }).limit(8)
       .then(({ data }) => setShoes(data || []))
   }, [])
 

@@ -5,7 +5,7 @@ import { FaBox, FaChartBar, FaUsers, FaPlus, FaEdit, FaTrash, FaBars, FaTimes, F
 
 const SECTIONS = ['overview', 'products', 'subscribers']
 
-const emptyForm = { name: '', price: '', brand: '', category: 'men', stock: '', image_url: '' }
+const emptyForm = { name: '', price: '', brand: '', category: 'men', stock: '', image_url: '', is_trending: false, is_latest: false }
 
 export default function Admin() {
   const navigate = useNavigate()
@@ -30,7 +30,7 @@ export default function Admin() {
   }
 
   const openAdd = () => { setForm(emptyForm); setEditId(null); setImageFile(null); setError(''); setShowModal(true) }
-  const openEdit = (p) => { setForm({ name: p.name, price: p.price, brand: p.brand, category: p.category, stock: p.stock, image_url: p.image_url }); setEditId(p.id); setImageFile(null); setError(''); setShowModal(true) }
+  const openEdit = (p) => { setForm({ name: p.name, price: p.price, brand: p.brand, category: p.category, stock: p.stock, image_url: p.image_url, is_trending: p.is_trending || false, is_latest: p.is_latest || false }); setEditId(p.id); setImageFile(null); setError(''); setShowModal(true) }
   const closeModal = () => { setShowModal(false); setError('') }
 
   const uploadImage = async () => {
@@ -49,7 +49,7 @@ export default function Admin() {
     setError('')
     try {
       const image_url = await uploadImage()
-      const payload = { name: form.name, price: Number(form.price), brand: form.brand, category: form.category, stock: Number(form.stock), image_url }
+      const payload = { name: form.name, price: Number(form.price), brand: form.brand, category: form.category, stock: Number(form.stock), image_url, is_trending: form.is_trending, is_latest: form.is_latest }
       if (editId) {
         await supabase.from('products').update(payload).eq('id', editId)
       } else {
@@ -172,6 +172,7 @@ export default function Admin() {
                         <th className="px-4 py-3">Category</th>
                         <th className="px-4 py-3">Price</th>
                         <th className="px-4 py-3">Stock</th>
+                        <th className="px-4 py-3">Tags</th>
                         <th className="px-4 py-3">Actions</th>
                       </tr>
                     </thead>
@@ -186,6 +187,10 @@ export default function Admin() {
                           <td className="px-4 py-3 capitalize text-white/60">{p.category}</td>
                           <td className="px-4 py-3 text-yellow-400">KES {Number(p.price).toLocaleString()}</td>
                           <td className="px-4 py-3 text-white/60">{p.stock}</td>
+                          <td className="px-4 py-3 flex gap-1 flex-wrap">
+                            {p.is_trending && <span className="text-xs bg-yellow-400 text-black px-2 py-0.5 rounded-full font-semibold">Trending</span>}
+                            {p.is_latest && <span className="text-xs bg-green-500 text-white px-2 py-0.5 rounded-full font-semibold">Latest</span>}
+                          </td>
                           <td className="px-4 py-3">
                             <div className="flex gap-2">
                               <button onClick={() => openEdit(p)} className="p-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors cursor-pointer">
@@ -255,6 +260,21 @@ export default function Admin() {
                   <option value="women">Women</option>
                   <option value="unisex">Unisex</option>
                 </select>
+              </div>
+
+              <div className="flex flex-col gap-3">
+                <label className="text-white/50 text-xs uppercase tracking-widest block">Display Section</label>
+                {[{ key: 'is_trending', label: 'Trending' }, { key: 'is_latest', label: 'Latest' }].map(({ key, label }) => (
+                  <button
+                    key={key}
+                    type="button"
+                    onClick={() => setForm(prev => ({ ...prev, [key]: !prev[key] }))}
+                    className={`flex items-center justify-between px-4 py-2 rounded-lg text-sm font-medium transition-colors ${form[key] ? 'bg-yellow-400 text-black' : 'bg-neutral-800 text-white/60 hover:text-white'}`}
+                  >
+                    {label}
+                    <span className={`w-4 h-4 rounded-full border-2 ${form[key] ? 'bg-black border-black' : 'border-white/40'}`} />
+                  </button>
+                ))}
               </div>
 
               <div>
